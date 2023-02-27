@@ -1,0 +1,317 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+* {
+  overflow-x: hidden;
+  transition: all 0.3s;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 90vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #000;
+  color: #fff;
+}
+nav {
+  width: 70%;
+  overflow: hidden;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.routes {
+  width: 300px;
+  text-align: center;
+}
+
+nav .routes a {
+  color: #fff;
+  opacity: 0.8;
+  text-decoration: none;
+  margin: 15px;
+}
+
+nav .routes a:hover {
+  opacity: 1;
+}
+
+nav .routes .active {
+  opacity: 1;
+}
+
+.logo {
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
+  transition: all 300ms;
+  overflow: hidden;
+}
+
+.logo:hover {
+  transition: all 300ms;
+}
+
+.element {
+  height: 150px;
+  width: 100px;
+  border: 3px solid #fff;
+  color: #fff;
+  border-radius: 15px;
+  overflow: hidden;
+  margin: 20px;
+}
+
+.element:hover {
+  border: 3px solid #000;
+  color: #000;
+}
+
+.container,
+.container-games {
+  height: 50%;
+  width: 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container {
+  height: 60%;
+}
+
+.container-games {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  width: 100%;
+}
+.container-options {
+  height: 80%;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.container-options .input {
+  margin: 15px;
+  width: 250px;
+}
+
+.save-button,
+.play-button,
+.pause-button {
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 3px solid white;
+  padding: 10px 1rem;
+  margin: 15px;
+  width: 282px;
+  font-weight: bold;
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.save-button:hover,
+.closeSession:hover,
+.play-button:hover {
+  transform: scale(0.95);
+}
+
+.save-button:active {
+  background-color: black;
+  color: white;
+  border: 3px solid white;
+}
+
+.play-button:active {
+  background-color: black;
+  color: white;
+  border: 3px solid green;
+}
+
+.pause-button:active {
+  background-color: black;
+  color: white;
+  border: 3px solid red;
+}
+
+.closeSession {
+  border-radius: 10px;
+  background-color: #1c2122;
+  color: red;
+  font-weight: bold;
+  border: 3px solid #1c2122;
+  padding: 10px 1rem;
+  width: 282px;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.closeSession:active {
+  background-color: black;
+  color: white;
+  border: 3px solid red;
+}
+
+.img {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.button2 {
+  border-radius: 4px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: 3px solid white;
+  height: 30px;
+  width: 75px;
+}
+
+.button2:hover {
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 4px;
+}
+
+.input {
+  border-radius: 10px;
+  outline: 2px solid #a317f7;
+  color: #fff;
+  border: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  background-color: #282c2c;
+  outline-offset: 3px;
+  padding: 10px 1rem;
+  transition: all ease-in 0.1s;
+}
+
+.input:end {
+  transition: all ease-in-out 0.1s;
+}
+
+.input:focus {
+  outline-offset: 5px;
+  background-color: #000;
+}
+
+.element2 {
+  width: 150px;
+}
+
+.container-play .logoPlay {
+  /*height: 50px;
+  width: 50px;*/
+  overflow: hidden;
+  transition: all 0.3s;
+  border-radius: 12px;
+}
+
+.logoPlay {
+  border: 3px solid #fff;
+}
+
+.container-play .logoPlay img:hover {
+  transform: scale(1.4);
+  border-radius: 12px;
+}
+
+.container-play {
+  height: 100px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  overflow: hidden;
+  cursor: pointer;
+}
+
+#btnConfig {
+  background: transparent;
+  color: white;
+}
+
+.dashed {
+  border: 3px dashed #fff;
+}
+
+.iconPlus {
+  width: 62%;
+  overflow: hidden;
+  border: none;
+}
+
+.o-hidden {
+  overflow: hidden;
+}
+
+.alert {
+  width: 282px;
+  background: red;
+  height: 40px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 10px;
+  display: none;
+  /*display: flex;*/
+  align-items: center;
+  justify-content: center;
+}
+
+#btnP{
+  width: 250px;
+  text-align: center;
+}
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+::-webkit-scrollbar:vertical {
+  width: 10px;
+}
+
+::-webkit-scrollbar-button:increment,
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 3px;
+  border: 2px solid #f1f2f3;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}

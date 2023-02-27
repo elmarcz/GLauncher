@@ -1,0 +1,71 @@
+<div class="container-games">
+  <h1>Games</h1>
+  <div class="container">
+    {{#each games}}
+      <a class="element" id="element" href="/game/{{name}}">
+        <img src="{{img}}" class="img" />
+      </a>
+    {{/each}}
+  </div>
+  <script>/*const games = [ { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    }, { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    }, { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    }, { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    },, { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    }, { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    }, { id: 1, url: "steam://wiqeoj3", img:
+    "https://i.3djuegos.com/juegos/7583/arma_3/fotos/ficha/arma_3-2310122.jpg",
+    }, { id: 2, url: "steam://wiqeoj2", img:
+    "https://www.minecraft.net/content/dam/games/minecraft/key-art/Games_Subnav_Minecraft-300x465.jpg",
+    }, { id: 3, url: "steam://wiqeoj3", img:
+    "https://store-images.s-microsoft.com/image/apps.19255.14120048182721302.9120a847-1aae-4918-be10-96c02cb917a6.092d6861-c0ff-498c-9881-c0b7ff9f1f2d",
+    }, { id: 4, url: "steam://wiqeoj2", img:
+    "https://cdn1.epicgames.com/offer/52f57f57120c440fad9bfa0e6c279317/EGS_Battlefield2042_DICE_S2_1200x1600-331f59b6877d2bf2194943fcf7a68048_1200x1600-331f59b6877d2bf2194943fcf7a68048",
+    } ]; games.forEach((game) => { const doc =
+    document.querySelector(".container"); doc.innerHTML += ` <a
+    class="element" id="element" href="/game/${game.id}"> <img
+    src="${game.img}" class="img"/> </a> `; });
+  </script>
+</div>

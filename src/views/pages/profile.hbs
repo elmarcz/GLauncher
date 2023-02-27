@@ -1,0 +1,32 @@
+<div class="container-games">
+  <h1>Profile</h1>
+  <div class="container-options">
+    <a class="element element2" href="/img">
+      <img
+        src="https://raw.githubusercontent.com/elmarcz/Login-With-Flexbox/master/img/Marc%20Medrano.png"
+        class="img"
+      />
+    </a>
+    <input
+      type="text"
+      placeholder="Username"
+      autocomplete="off"
+      name="text"
+      class="input"
+    />
+    <input
+      type="password"
+      placeholder="Password"
+      autocomplete="off"
+      name="password"
+      class="input"
+    />
+    <button class="save-button">Save</button>
+    <button class="closeSession" onclick="logout()">Log Out</button>
+    <script>
+      function logout(){
+        window.location.href = "http://localhost:5050/logout";
+      }
+    </script>
+  </div>
+</div>

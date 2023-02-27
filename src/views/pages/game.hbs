@@ -1,0 +1,36 @@
+<div class="container-games">
+  <h1>Games</h1>
+  <div class="container">
+    {{#each games}}
+      <a class="element" id="element" href="/game/{{name}}">
+        <img src="{{img}}" class="img" />
+      </a>
+    {{/each}}
+  </div>
+  <div class="container-play">
+    <div class="logoPlay">
+      <img src="{{gameSelected.img}}" height="50px" width="50px" />
+    </div>
+    <a
+      class="play-button"
+      id="btnP"
+      onclick="play()"
+      href={{gameSelected.url}}
+    >Play {{gameSelected.name}}</a>
+
+    <div>
+      <button
+        class="material-symbols-outlined icon"
+        id="btnConfig"
+        data-key="{{gameSelected.hours}}"
+      >
+        settings
+      </button>
+    </div>
+  </div>
+  <script>
+    function play(){ const playButton = document.getElementById("btnP");
+    playButton.addEventListener("click", () => { const data =
+    playButton.getAttribute("url") window.location.href = data; }) }
+  </script>
+</div>
