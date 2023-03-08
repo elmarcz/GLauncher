@@ -1,0 +1,34 @@
+<div class="container-games">
+  <h1>Profile</h1>
+  <div class="container-options none-container-options">
+    <div class="container-options container-options2 " id="card">
+      <div class="user">
+        <img src={{backgroundImg}} class="img background" />
+      </div>
+      <div class="user">
+        <a class="element element2">
+          <img src={{userFinded.img}} class="img" />
+        </a>
+        <h1>{{userFinded.username}}</h1>
+        {{#if isUser}}
+        <a href="/profile" class="edit-button">Edit</a>
+        {{/if}}
+      </div>
+    </div>
+    {{#if noneGShots}}
+      <button class="noGShots">This user hasn't GShots</button>
+    {{/if}}
+    <div class="container-images">
+      <img
+        src="https://cdn.discordapp.com/attachments/901561027467018320/1026841857159864320/unknown.png"
+      />
+      <img
+        src="https://cdn.discordapp.com/attachments/901561027467018320/1026841857159864320/unknown.png"
+      />
+    </div>
+  </div>
+</div>
+<script>
+  window.scroll(function(){ if(window.scrollTop() >= 80%){ const card =
+  document.getElementById('card'); card.style.display = 'none' } })
+</script>

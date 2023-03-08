@@ -113,9 +113,29 @@ nav .routes .active {
     overflow-x: hidden;
 }
 
+.none-container-options{
+  flex-direction: unset;
+}
+
+.container-options2{
+  height: 40%;
+  position: sticky;
+}
+
 .container-options .input{
     margin: 15px;
     width: 250px;
+}
+
+.container-images{
+  width: 80%;
+}
+
+.container-images img{
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+  margin: 15px 0px 
 }
 
 .save-button,
@@ -131,6 +151,33 @@ nav .routes .active {
     width: 282px;
     font-weight: bold;
     font-size: 15px;
+}
+
+.edit-button{
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  border: 3px solid white;
+  padding: 10px 1rem;
+  margin: 15px;
+  font-weight: bold;
+  font-size: 15px;
+  height: 20px;
+  text-decoration: none;
+}
+
+.noGShots{
+  border-radius: 10px;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  border: 3px solid #e0e0e0;
+  padding: 10px 1rem;
+  margin: 15px;
+  width: 282px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 .save-button:hover,
@@ -239,6 +286,20 @@ nav .routes .active {
 
 .logoPlay{
   border: 3px solid #fff;
+  height: 50px;
+}
+
+.user{
+  width: 500px;
+  height: 200px;
+  display: flex;
+  overflow: hidden;
+  border-radius: 15px;
+  position: absolute;
+}
+
+.background{
+  filter: blur(20px);
 }
 
 .container-play .logoPlay img:hover{

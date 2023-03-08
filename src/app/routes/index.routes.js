@@ -3,6 +3,7 @@ module.exports = async (app) => {
   const passport = require("passport");
   const gameSchema = require("../models/gamesSchema");
   const userSchema = require("../models/userSchema");
+  const gShotsSchema = require("../models/gShotsSchema");
 
   app.get("/", (req, res) => {
     if (req.user == undefined) {
@@ -70,28 +71,80 @@ module.exports = async (app) => {
     });
   });
 
-  app.get("/logout", functions.isLoggedIn, async (req, res) => {
-    req.logOut((err) => {
-      if (err) return res.next(err);
-    });
-    res.redirect("/");
+  app.get("/user/:id", functions.isLoggedIn, async (req, res) => {
+    try {
+      const { id } = req.params;
+      const userFinded = await userSchema.findOne({ _id: id });
+      if (!userFinded) {
+        // si no se encuentra el usuario, redirigir a una página de error o mostrar un mensaje de error
+        return res.status(404).send("Usuario no encontrado");
+      }
+      console.log("-> " + userFinded.img);
+      const gShots = await gShotsSchema.find({ id: req.params.id });
+      let backgroundImg;
+      let isUser;
+      if (gShots == 0) {
+        backgroundImg = userFinded.img;
+      } else {
+        backgroundImg = gShots[0].img;
+      }
+      if (req.params.id == req.user.id) {
+        isUser = true
+      } else {
+        isUser = false
+      }
+      res.render("pages/user", {
+        userFinded,
+        backgroundImg: backgroundImg,
+        isUser: isUser
+      });
+    } catch (err) {
+      // manejar cualquier error que ocurra durante la búsqueda del usuario o de las capturas de pantalla
+      console.error(err);
+      res.status(500).send("Error del servidor");
+    }
   });
+
+  app.get("/gshots", functions.isLoggedIn, async (req, res) => {
+    const games = await gameSchema.find({ username: req.user.username });
+    res.render("pages/gshots", { games: games });
+  });
+
+  app.get("/logout", functions.isLoggedIn, async (req, res) => {
+    try {
+      req.logOut((err) => {
+        if (err) throw err;
+        res.redirect("/");
+      });
+    } catch (err) {
+      console.error(err);
+      res.status(500).send("Ha ocurrido un error al cerrar sesión");
+    }
+  });  
 
   app.get("/addGame", functions.isLoggedIn, (req, res) => {
     res.render("pages/addGame");
   });
 
   app.post("/addGame", functions.isLoggedIn, async (req, res) => {
-    const { name, url } = req.body;
-    const game = new gameSchema({
-      name: name,
-      url: url,
-      username: req.user.username,
-      hours: 0,
-    });
-    await game.save();
-    res.redirect("/games");
-  });
+    try {
+      const { name, url } = req.body;
+      if (!name || !url) {
+        throw new Error("Se requieren los campos 'name' y 'url'");
+      }
+      const game = new gameSchema({
+        name: name,
+        url: url,
+        username: req.user.username,
+        hours: 0,
+      });
+      await game.save();
+      res.redirect("/games");
+    } catch (err) {
+      console.error(err);
+      res.status(400).send("Ha ocurrido un error al agregar el juego");
+    }
+  });  
 
   app.get("/profile", functions.isLoggedIn, async (req, res) => {
     const user = await userSchema.find({ username: req.user.username });
@@ -146,6 +199,7 @@ module.exports = async (app) => {
   app.get("/gameImg", functions.isLoggedIn, (req, res) => {
     res.render("pages/img", { gameImg: true });
   });
+
   app.get("/edit/:id", functions.isLoggedIn, (req, res) => {
     res.render("pages/edit", {
       id: req.params.id,
@@ -153,7 +207,7 @@ module.exports = async (app) => {
   });
 
   app.post("/edit/:id", functions.isLoggedIn, async (req, res) => {
-    await gameSchema.findOneAndUpdate({ id: id }, { img: req.body.img });
+    await gameSchema.findOneAndUpdate({ _id: req.params.id }, { img: req.body.img });
     res.redirect("/games");
   });
 };

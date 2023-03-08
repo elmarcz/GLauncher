@@ -1,13 +1,15 @@
-    <div class="container-games o-hidden">
-      <h1>Edit</h1>
-      <form class="container-options"action="/edit/{{id}}" method="post">
-        <input
+<div class="container-games o-hidden">
+  <h1>Edit</h1>
+  <form class="container-options"action="/edit/{{id}}" method="post">
+    <input
           type="url"
           placeholder="Insert Image Url"
           autocomplete="off"
+          value="{{img}}"
           name="img"
           class="input"
-        />
-                <input type="submit" class="save-button">Save</input>
-      </form>
-    </div>
+    />
+        <input type="submit" class="save-button" value="Save"></input>
+        <input type="submit" class="closeSession" value="Delete"></input>
+  </form>
+</div>
