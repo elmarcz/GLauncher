@@ -1,12 +1,16 @@
-<nav>
-  <div class="logo">
-    <a href="/profile"><img
-        class="logo"
-        src="https://raw.githubusercontent.com/elmarcz/Login-With-Flexbox/master/img/Marc%20Medrano.png"
-      /></a>
-  </div>
-  <div class="routes">
-    <a href="/games" class="active">Games</a>
-    <a href="/addGame">Add a Game</a>
-  </div>
-</nav>
+{{#if user}}
+  <nav>
+    <div class="logo">
+      <a href="/profile"><img
+          class="logo"
+          src={{user.img}}
+        /></a>
+    </div>
+    <div class="routes">
+      <a href="/games" class="active">Games</a>
+      <a href="/addGame">Add a Game</a>
+    </div>
+  </nav>
+{{else}}
+  <nav></nav>
+{{/if}}      

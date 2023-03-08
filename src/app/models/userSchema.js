@@ -14,6 +14,9 @@ const userSchema = new Schema({
     verifyed: {
         default: false
     },
+    ceo: {
+      default: false
+    },
     img: String
 });
 

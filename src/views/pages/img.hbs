@@ -1,13 +1,30 @@
-<div class="container-games">
-  <h1>Add a Game</h1>
-  <div class="container-options">
-    <input
-      type="text"
-      placeholder="Image URL"
-      autocomplete="off"
-      name="text"
-      class="input"
-    />
-    <button class="save-button">Save</button>
-  </div>
-</div>
+{{#if gameImg}}
+            <div class="container-games">
+      <h1>Add a Game</h1>
+      <div class="container-options">
+        <input
+          type="text"
+          placeholder="Insert image url"
+          autocomplete="off"
+          name="text"
+          class="input"
+        />
+                <button class="save-button">Save</button>
+      </div>
+    </div>
+        {{else}}
+            <div class="container-games">
+      <h1>Profile</h1>
+      <form class="container-options"action="/img" method="post">
+        <input
+          type="url"
+          value="{{user.img}}"
+          placeholder="Insert image url"
+          autocomplete="off"
+          name="img"
+          class="input"
+        />
+                <button class="save-button">Save</button>
+      </form>
+    </div>
+        {{/if}}

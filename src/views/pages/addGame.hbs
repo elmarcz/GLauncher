@@ -1,26 +1,26 @@
-<div class="container-games">
-  <h1>Add a Game</h1>
-  <form class="container-options" action="/addGame" method="post">
-    <a class="element" href="/img">
-      <img
-        src="https://cdn.windowsreport.com/wp-content/uploads/2020/10/IMG-file.jpg"
-        class="img"
-      />
-    </a>
-    <input
-      type="text"
-      placeholder="Name"
-      autocomplete="off"
-      name="name"
-      class="input"
-    />
-    <input
-      type="text"
-      placeholder="URL"
-      autocomplete="off"
-      name="url"
-      class="input"
-    />
-    <input class="save-button" type="submit">Save</button>
-  </form>
-</div>
+    <div class="container-games o-hidden">
+      <h1>Add a Game</h1>
+      <form class="container-options" action="/addGame" method="post">
+        <a class="element dashed" href="/gameImg">
+          <img
+            src="./img/IconPlus.png"
+            class="iconPlus"
+          />
+        </a>
+        <input
+          type="text"
+          placeholder="Name"
+          autocomplete="off"
+          name="name"
+          class="input"
+        />
+        <input
+          type="text"
+          placeholder="URL"
+          autocomplete="off"
+          name="url"
+          class="input"
+        />
+        <input type="submit" class="save-button" value="Save"></input>
+      </form>
+    </div>

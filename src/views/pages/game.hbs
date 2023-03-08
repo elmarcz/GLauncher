@@ -11,21 +11,21 @@
     <div class="logoPlay">
       <img src="{{gameSelected.img}}" height="50px" width="50px" />
     </div>
-    <a
+    <button
       class="play-button"
       id="btnP"
       onclick="play()"
       href={{gameSelected.url}}
-    >Play {{gameSelected.name}}</a>
+    >Play {{gameSelected.name}}</button>
 
     <div>
-      <button
+      <a
         class="material-symbols-outlined icon"
         id="btnConfig"
-        data-key="{{gameSelected.hours}}"
+        href="/edit/{{gameSelected.name}}"
       >
         settings
-      </button>
+      </a>
     </div>
   </div>
   <script>

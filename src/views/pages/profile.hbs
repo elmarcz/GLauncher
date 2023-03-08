@@ -1,18 +1,21 @@
 <div class="container-games">
   <h1>Profile</h1>
   <div class="container-options">
+  <form class="container-options" action="/profile" method="post">
     <a class="element element2" href="/img">
       <img
-        src="https://raw.githubusercontent.com/elmarcz/Login-With-Flexbox/master/img/Marc%20Medrano.png"
+        src={{user.img}}
         class="img"
       />
     </a>
     <input
       type="text"
+      value="{{user.username}}"
       placeholder="Username"
       autocomplete="off"
-      name="text"
+      name="username"
       class="input"
+      required
     />
     <input
       type="password"
@@ -20,12 +23,14 @@
       autocomplete="off"
       name="password"
       class="input"
+      required
     />
-    <button class="save-button">Save</button>
-    <button class="closeSession" onclick="logout()">Log Out</button>
+    <input type="submit" class="save-button" value="Save"></input>
+  </form>
+      <button class="closeSession" onclick="admin()">Administrate</button>
     <script>
-      function logout(){
-        window.location.href = "http://localhost:5050/logout";
+      function admin(){
+        window.location.href = "/administrate";
       }
     </script>
   </div>

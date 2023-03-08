@@ -19,7 +19,7 @@ module.exports = async (port) => {
 
 
     // Settings
-    app.set('port', process.env.PORT || port || 4000);
+    app.set('port', 4000);
     app.set('views', path.join(__dirname, 'views'))
     app.engine('.hbs', exphbs({
         defaultLayout: 'main',
@@ -44,11 +44,16 @@ module.exports = async (port) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
+      function a(user) {
+      console.log(user)
+    }
+
     // Global Variables
     app.use(async (req, res, next) => {
         app.locals.success = req.flash('success');
         app.locals.message = req.flash('message');
         app.locals.user = req.user;
+        a(app.locals.user)
         next();
     })
 
