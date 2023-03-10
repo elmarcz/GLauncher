@@ -15,9 +15,22 @@ const userSchema = new Schema({
         default: false
     },
     ceo: {
-      default: false
+        default: false
     },
-    img: String
+    friends: [
+        {
+            friendID: String,
+            date: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ],
+    img: String,
+    date: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model('userSchema', userSchema);

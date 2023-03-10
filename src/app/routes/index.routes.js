@@ -74,19 +74,22 @@ module.exports = async (app) => {
   app.get("/user/:id", functions.isLoggedIn, async (req, res) => {
     try {
       const { id } = req.params;
+      let noneGShots;
       const userFinded = await userSchema.findOne({ _id: id });
       if (!userFinded) {
         // si no se encuentra el usuario, redirigir a una página de error o mostrar un mensaje de error
         return res.status(404).send("Usuario no encontrado");
       }
       console.log("-> " + userFinded.img);
-      const gShots = await gShotsSchema.find({ id: req.params.id });
+      const gShots = await gShotsSchema.find({ userID: req.params.id }).sort({ date: -1 })
       let backgroundImg;
       let isUser;
       if (gShots == 0) {
         backgroundImg = userFinded.img;
+        noneGShots = true;
       } else {
         backgroundImg = gShots[0].img;
+        noneGShots = false
       }
       if (req.params.id == req.user.id) {
         isUser = true
@@ -96,13 +99,62 @@ module.exports = async (app) => {
       res.render("pages/user", {
         userFinded,
         backgroundImg: backgroundImg,
-        isUser: isUser
+        isUser: isUser,
+        gShots: gShots,
+        noneGShots: noneGShots
       });
     } catch (err) {
       // manejar cualquier error que ocurra durante la búsqueda del usuario o de las capturas de pantalla
       console.error(err);
       res.status(500).send("Error del servidor");
     }
+  });
+
+  app.get("/gshot/:userID/:name", functions.isLoggedIn, async (req, res) => {
+    try {
+      const ownerGshot = await gShotsSchema.findOne({ userID: req.params.userID, name: req.params.name });
+      const userFinded = await userSchema.findOne({ _id: ownerGshot.userID });
+
+      if (!ownerGshot || !userFinded) {
+        return res.status(404).send('Not Found');
+      }
+
+      const date = `${ownerGshot.date.getDate()}/${ownerGshot.date.getMonth() + 1}/${ownerGshot.date.getFullYear()}`;
+      const dateToday = new Date();
+      if (ownerGshot.date.getDate() != dateToday.getDate() && req.user.id != ownerGshot.userID || req.user.firends.find("friendID" == ownerGshot.userID)) return res.redirect(`/user/${req.params.userID}`);
+      res.render("pages/gShot", {
+        gShot: ownerGshot,
+        date,
+        logo: userFinded.img
+      });
+
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+
+  app.get("/addfriend", functions.isLoggedIn, async (req, res) => {
+    res.render("pages/addFriend");
+  });
+
+  app.post("/addfriend", functions.isLoggedIn, async (req, res) => {
+    const { friendID } = req.body;
+    await userSchema.findOneAndUpdate({ _id: req.user.id }, {
+      $push: {
+        'friends': {
+          friendID: friendID
+        }
+      }
+    })
+    await userSchema.findOneAndUpdate({ _id: friendID }, {
+      $push: {
+        'friends': {
+          friendID: req.user.id
+        }
+      }
+    })
+    res.redirect("/");
   });
 
   app.get("/gshots", functions.isLoggedIn, async (req, res) => {
@@ -120,7 +172,7 @@ module.exports = async (app) => {
       console.error(err);
       res.status(500).send("Ha ocurrido un error al cerrar sesión");
     }
-  });  
+  });
 
   app.get("/addGame", functions.isLoggedIn, (req, res) => {
     res.render("pages/addGame");
@@ -144,7 +196,7 @@ module.exports = async (app) => {
       console.error(err);
       res.status(400).send("Ha ocurrido un error al agregar el juego");
     }
-  });  
+  });
 
   app.get("/profile", functions.isLoggedIn, async (req, res) => {
     const user = await userSchema.find({ username: req.user.username });
@@ -154,6 +206,20 @@ module.exports = async (app) => {
 
   app.get("/administrate", functions.isLoggedIn, async (req, res) => {
     res.render("pages/administrate");
+  });
+
+  app.get("/gshots/post", functions.isLoggedIn, (req, res) => {
+    res.render("pages/post");
+  });
+
+  app.post("/gshots/post", functions.isLoggedIn, async (req, res) => {
+    const newGShots = new gShotsSchema({
+      name: req.body.name,
+      img: 'https://cdnb.artstation.com/p/assets/images/images/024/538/827/original/pixel-jeff-clipa-s.gif?1582740711',
+      userID: req.user.id
+    })
+    await newGShots.save();
+    res.render("pages/post");
   });
 
   app.post("/profile", functions.isLoggedIn, async (req, res) => {

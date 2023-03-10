@@ -1,7 +1,11 @@
 <div class="container-games">
-  <h1>Profile</h1>
+  <div class="fila">
+    <a href=""></a>
+    <h1>Profile</h1>
+    <a href="/friends"><i class="fa-solid fa-user-group"></i></a>
+  </div>
   <div class="container-options none-container-options">
-    <div class="container-options container-options2 " id="card">
+    <div class="container-options container-options2" id="card">
       <div class="user">
         <img src={{backgroundImg}} class="img background" />
       </div>
@@ -11,20 +15,19 @@
         </a>
         <h1>{{userFinded.username}}</h1>
         {{#if isUser}}
-        <a href="/profile" class="edit-button">Edit</a>
+          <a href="/profile" class="edit-button">Edit</a>
         {{/if}}
       </div>
     </div>
     {{#if noneGShots}}
       <button class="noGShots">This user hasn't GShots</button>
     {{/if}}
-    <div class="container-images">
-      <img
-        src="https://cdn.discordapp.com/attachments/901561027467018320/1026841857159864320/unknown.png"
-      />
-      <img
-        src="https://cdn.discordapp.com/attachments/901561027467018320/1026841857159864320/unknown.png"
-      />
+    <div class="container-images gshotsUser">
+      {{#each gShots}}
+        <a class="gshot" href="/gshot/{{userID}}/{{name}}">
+          <img src="{{img}}" />
+        </a>
+      {{/each}}
     </div>
   </div>
 </div>
