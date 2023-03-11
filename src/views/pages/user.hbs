@@ -10,10 +10,17 @@
         <img src={{backgroundImg}} class="img background" />
       </div>
       <div class="user">
-        <a class="element element2">
-          <img src={{userFinded.img}} class="img" />
-        </a>
-        <h1>{{userFinded.username}}</h1>
+        {{#if friends}}
+          <a class="element element2">
+            <img src={{userFinded.img}} class="img" />
+          </a>
+          <h1>{{userFinded.username}} <i class="fa-solid fa-user-group"></i></h1>
+        {{else}}
+          <a class="element element2">
+            <img src={{userFinded.img}} class="img" />
+          </a>
+          <h1>{{userFinded.username}}</h1>
+        {{/if}}
         {{#if isUser}}
           <a href="/profile" class="edit-button">Edit</a>
         {{/if}}

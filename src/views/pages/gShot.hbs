@@ -1,7 +1,12 @@
 <div class="container-games">
   <div class="gShotFullScreen">
     <p>{{gShot.name}} - {{date}}</p>
-    <img class="logoAuthor" src={{logo}}/>
+    <img class="logoAuthor" src={{logo}} />
     <img src="{{gShot.img}}" class="img" />
+    <button class="save-button" id="backBtn">Back</button>
   </div>
 </div>
+<script>
+  const backBtn = document.getElementById('backBtn');
+  backBtn.addEventListener('click', () => {history.go(-1)})
+</script>

@@ -84,6 +84,16 @@ module.exports = async (app) => {
       const gShots = await gShotsSchema.find({ userID: req.params.id }).sort({ date: -1 })
       let backgroundImg;
       let isUser;
+      async function theyAreFriends(user1, user2) {
+        const user = await userSchema.findOne({ _id: user1 });
+        if (user.friends.find(x => x.friendID == user2)) {
+          return true
+        } else {
+          return false
+        }
+      }
+      let friends = await theyAreFriends(req.user.id, userFinded.id);
+      console.log(friends)
       if (gShots == 0) {
         backgroundImg = userFinded.img;
         noneGShots = true;
@@ -101,7 +111,8 @@ module.exports = async (app) => {
         backgroundImg: backgroundImg,
         isUser: isUser,
         gShots: gShots,
-        noneGShots: noneGShots
+        noneGShots: noneGShots,
+        friends: friends
       });
     } catch (err) {
       // manejar cualquier error que ocurra durante la búsqueda del usuario o de las capturas de pantalla
@@ -119,9 +130,20 @@ module.exports = async (app) => {
         return res.status(404).send('Not Found');
       }
 
+      async function theyAreFriends(user1, user2) {
+        const user = await userSchema.findOne({ _id: user1 });
+        if (user.friends.find(x => x.friendID == user2)) {
+          return true
+        } else {
+          return false
+        }
+      }
+
+      theyAreFriends(ownerGshot.userID, req.user.id)
+
       const date = `${ownerGshot.date.getDate()}/${ownerGshot.date.getMonth() + 1}/${ownerGshot.date.getFullYear()}`;
-      const dateToday = new Date();
-      if (ownerGshot.date.getDate() != dateToday.getDate() && req.user.id != ownerGshot.userID || req.user.firends.find("friendID" == ownerGshot.userID)) return res.redirect(`/user/${req.params.userID}`);
+      let TheyAreFriends = await theyAreFriends(ownerGshot.userID, req.user.id)
+      if (TheyAreFriends == true) return res.redirect(`/user/${req.params.userID}`);
       res.render("pages/gShot", {
         gShot: ownerGshot,
         date,
@@ -166,8 +188,8 @@ module.exports = async (app) => {
     try {
       req.logOut((err) => {
         if (err) throw err;
-        res.redirect("/");
       });
+      res.redirect("/");
     } catch (err) {
       console.error(err);
       res.status(500).send("Ha ocurrido un error al cerrar sesión");
